@@ -1,13 +1,12 @@
 <ul>
     {% if user.is_authenticated %}
-        "Welcome {{user.username}}"
-        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'profile'%}"> Profile </a></li>
-        <!-- <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'home'%}"> Book List </a></li>
-        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'home'%}"> Category List </a></li> -->
-        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'logout'%}"> Logout </a></li>
+        "خوش آمدید {{user.username}}"
+        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'profile'%}"> پروفایل </a></li>
+        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'book_list'%}"> لیست کتاب ها </a></li>
+        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'logout'%}"> خروج </a></li>
     {% else %}
-        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'home'%}"> Home </a></li>
-        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'login'%}"> Login </a></li>
-        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'signup'%}"> SignUp </a></li>
+        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'home'%}"> خانه </a></li>
+        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'login'%}"> ورود </a></li>
+        <li style="margin-left: 20px;margin-right: 20px;"><a href="{% url 'signup'%}"> ثبت نام </a></li>
     {% endif %}
 </ul>

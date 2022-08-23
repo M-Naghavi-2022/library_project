@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %} Book List page {% endblock title %}
+
+{% block content %}
+    <h3></h3>
+    <div style="margin: 30px;border: 4px solid orange; padding: 30px; width: 600px; border-radius: 20px;">
+        <form method="get" >
+            <label style="margin-right: 10px;"> جستجوی کتاب ها </label>
+            <input type="search" name="search" style="margin: 10px;" placeholder="عنوان،موضوع،نویسنده،مترجم،ناشر">
+            <br>
+            <label style="margin-right: 10px;margin-top: 15px;"> فیلتر دسته بندی </label>
+            <select name="filtered_category">
+                <option value=""> همه </option>
+                {% for cat,books in categories.items %}
+                    <option value="{{cat}}" >{{cat}}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <input type="submit" value="اعمال" style="margin-top: 15px;">
+        </form>
+    </div>
+    {% for cat,books in categories.items %}
+        <div style="border: 4px solid black; width: 600px; margin: 30px; padding: 30px;border-radius: 20px;">
+            <h1 style="color: blue;">دسته بندی: {{cat}}</h1>
+            {% for book in books %}
+                <div style="border: 3px dotted black;border-radius: 20px; width: 400px; margin: 30px; padding: 30px">
+                    <img src="{{ book.image.url }}" alt="img" style="width:300px;border: 2px black solid;">
+                    <h3>عنوان کتاب: {{book.title}}</h3> 
+                    <p>موضوع: {{book.subject1}}, {{book.subject2}}, {{book.subject3}}</p>
+                    <p>نویسنده: {{book.author1}}, {{book.author2}}, {{book.author3}}</p>
+                    {% if book.is_translated %}
+                    <p>مترجم: {{book.translator1}}, {{book.translator2}}, {{book.translator3}}</p>
+                    {% endif %}
+                    <p>ناشر: {{book.publisher}}</p>
+                    <p>سال انتشار: {{book.publish_year}}</p>
+                    <p>تعداد کل: {{book.total_quantity}}</p>
+                    <p>تعداد موجود در کتابخانه: {{book.available_quantity}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+{% endblock content %}
