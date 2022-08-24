@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User, Group
 
 
 class MemberProfile(User):
@@ -18,4 +18,7 @@ class StaffProfile(User):
 
     def save(self) -> None:
         self.is_staff=True
+        super().save()
+        group = Group.objects.get_or_create(name='staff')
+        group[0].user_set.add(self)
         return super().save()
